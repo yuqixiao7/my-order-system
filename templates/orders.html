@@ -18,14 +18,20 @@
                 </tr>
             </thead>
             <tbody>
-                {% for row in data %}
-                <tr>
-                    {% for item in row %}
-                    <td>{{ item }}</td>
-                    {% endfor %}
-                </tr>
-                {% endfor %}
-            </tbody>
+        {% for row in data %}
+        <tr>
+            {% for item in row %}
+            <td>{{ item }}</td>
+            {% endfor %}
+            <td>
+                <form method="POST" action="/delete" onsubmit="return confirm('確定要刪除這筆訂單嗎？')">
+                    <input type="hidden" name="index" value="{{ loop.index0 }}">
+                    <button type="submit" class="btn btn-danger btn-sm">刪除</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
         </table>
         <a href="/" class="btn btn-secondary">回首頁</a>
     </div>
